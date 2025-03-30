@@ -1,6 +1,3 @@
-Conteúdo do arquivo:
-(Você também pode copiar manualmente o código abaixo para um novo arquivo .md)
-
 markdown
 Copy
 # Toro Investimentos Dashboard (Angular)
