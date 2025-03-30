@@ -1,0 +1,61 @@
+<div class="container mt-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h4 class="text-primary">
+          Saldo disponível: 
+          <span class="text-success">{{ balance | currency:'BRL':'symbol':'1.2-2' }}</span>
+        </h4>
+      </div>
+    </div>
+  
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngFor="let product of products" class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">{{ product.bondAsset }}</h5>
+            <small class="card-subtitle">{{ product.issuerName }}</small>
+          </div>
+          
+          <div class="card-body">
+            <dl class="row mb-0">
+              <dt class="col-6">Indexador:</dt>
+              <dd class="col-6">{{ product.index }}</dd>
+  
+              <dt class="col-6">Taxa:</dt>
+              <dd class="col-6 text-success">{{ product.tax | number:'1.2-2' }}%</dd>
+  
+              <dt class="col-6">Preço Unitário:</dt>
+              <dd class="col-6">{{ product.unitPrice | currency:'BRL':'symbol':'1.2-2' }}</dd>
+  
+              <dt class="col-6">Estoque:</dt>
+              <dd class="col-6" [class.text-danger]="product.stock < 10">
+                {{ product.Stock }}
+              </dd>
+            </dl>
+          </div>
+  
+          <div class="card-footer bg-light">
+            <div class="input-group">
+              <input type="number" 
+                     class="form-control" 
+                     [(ngModel)]="quantities[product.id]"
+                     min="1" 
+                     [max]="product.Stock"
+                     placeholder="Quantidade">
+              
+              <button class="btn btn-primary" 
+                      type="button" 
+                      (click)="purchase(product)"
+                      [disabled]="!quantities[product.id] || quantities[product.id] <= 0">
+                Comprar
+              </button>
+            </div>
+  
+            <div *ngIf="quantities[product.id] > product.Stock" class="text-danger mt-2 small">
+              Quantidade excede o estoque disponível
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

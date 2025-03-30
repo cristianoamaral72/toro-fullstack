@@ -1,0 +1,88 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <lbd-chart
+                  [title]="'Investimentos por Categoria'"
+                  [subtitle]="'Distribuição da carteira'"
+                  [chartClass]="'ct-perfect-fourth'"
+                  [chartType]="investmentChartType"
+                  [chartData]="investmentChartData"
+                  [legendItems]="investmentChartLegendItems"
+                  [withHr]="true"
+                  [footerIconClass]="'fa fa-pie-chart'"
+                  [footerText]="'Atualizado há 1 hora'">
+                </lbd-chart>
+            </div>
+            <div class="col-md-8">
+                <lbd-chart
+                  [title]="'Performance da Carteira'"
+                  [subtitle]="'Últimos 12 meses'"
+                  [chartType]="portfolioChartType"
+                  [chartData]="portfolioChartData"
+                  [chartOptions]="portfolioChartOptions"
+                  [chartResponsive]="portfolioChartResponsive"
+                  [legendItems]="portfolioChartLegendItems"
+                  [withHr]="true"
+                  [footerIconClass]="'fa fa-line-chart'"
+                  [footerText]="'Atualizado 5 minutos atrás'">
+                </lbd-chart>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <lbd-chart
+                  [title]="'Receita e Despesas'"
+                  [subtitle]="'Comparação mensal'"
+                  [chartType]="revenueChartType"
+                  [chartData]="revenueChartData"
+                  [chartOptions]="revenueChartOptions"
+                  [chartResponsive]="revenueChartResponsive"
+                  [legendItems]="revenueChartLegendItems"
+                  [withHr]="true"
+                  [footerIconClass]="'fa fa-bar-chart'"
+                  [footerText]="'Dados verificados'">
+                </lbd-chart>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Tarefas</h4>
+                        <p class="category">Desenvolvimento Backend</p>
+                    </div>
+                    <div class="content">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr *ngFor="let task of tasks">
+                                        <td>
+                                            <div class="checkbox">
+                                                <input [id]="task.id" type="checkbox" [checked]="task.completed">
+                                                <label [for]="task.id"></label>
+                                            </div>
+                                        </td>
+                                        <td>{{ task.title }}</td>
+                                        <td class="td-actions text-right">
+                                            <button type="button" class="btn btn-info btn-simple btn-xs" title="Editar">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-simple btn-xs" title="Remover">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Atualizado há 3 minutos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
