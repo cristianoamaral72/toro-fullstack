@@ -1,8 +1,3 @@
-Conteúdo do arquivo:
-(Você também pode copiar manualmente o código abaixo para um novo arquivo .md)
-
-markdown
-Copy
 # Toro Investimentos Dashboard (Angular)
 
 Dashboard para gestão de investimentos desenvolvido em Angular 16.
@@ -19,36 +14,52 @@ Dashboard para gestão de investimentos desenvolvido em Angular 16.
   Instale globalmente com:  
   ```bash
   npm install -g @angular/cli
-🛠️ Instalação do Projeto
-1. Clonar o Repositório
-bash
-Copy
-git clone [URL_DO_SEU_REPOSITÓRIO]
-cd toroinvestimentos-dashboard-angular
-2. Instalar Dependências
-bash
-Copy
-npm install
-3. Configuração Inicial
-Variáveis de ambiente:
-Edite src/environments/environment.ts conforme necessário:
+  ```
 
-typescript
-Copy
-export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:5000' // URL da API
-};
-🚀 Comandos Úteis
-Comando	Descrição
-ng serve	Inicia servidor de desenvolvimento (4200)
-ng build --configuration production	Gera build de produção (pasta dist/)
-ng test	Executa testes unitários via Karma
-ng e2e	Executa testes end-to-end via Protractor
-ng generate component meu-componente	Cria novo componente
-🏗️ Estrutura do Projeto (Angular)
-plaintext
-Copy
+---
+
+## 🛠️ Instalação do Projeto
+
+1. **Clonar o Repositório**
+   ```bash
+   git clone [URL_DO_SEU_REPOSITÓRIO]
+   cd toroinvestimentos-dashboard-angular
+   ```
+
+2. **Instalar Dependências**
+   ```bash
+   npm install
+   ```
+
+3. **Configuração Inicial**
+   
+   Variáveis de ambiente:  
+   Edite `src/environments/environment.ts` conforme necessário:
+   
+   ```typescript
+   export const environment = {
+     production: false,
+     apiUrl: 'http://localhost:5000' // URL da API
+   };
+   ```
+
+---
+
+## 🚀 Comandos Úteis
+
+| Comando                                    | Descrição                                            |
+| ------------------------------------------ | ---------------------------------------------------- |
+| `ng serve`                                 | Inicia servidor de desenvolvimento (porta 4200)      |
+| `ng build --configuration production`      | Gera build de produção (pasta `dist/`)               |
+| `ng test`                                  | Executa testes unitários via Karma                   |
+| `ng e2e`                                   | Executa testes end-to-end via Protractor             |
+| `ng generate component meu-componente`     | Cria novo componente                                 |
+
+---
+
+## 🏗️ Estrutura do Projeto (Angular)
+
+```plaintext
 toroinvestimentos-dashboard-angular
 ├── src/
 │   ├── app/
@@ -62,12 +73,17 @@ toroinvestimentos-dashboard-angular
 │   └── environments/                # Configurações de ambiente
 ├── angular.json                     # Configuração do workspace
 ├── package.json                     # Dependências e scripts
-🔧 Configurações Avançadas
-Proxy para API
-Crie proxy.conf.json na raiz:
+```
 
-json
-Copy
+---
+
+## 🔧 Configurações Avançadas
+
+### Proxy para API
+
+Crie o arquivo `proxy.conf.json` na raiz do projeto com o seguinte conteúdo:
+
+```json
 {
   "/api": {
     "target": "http://localhost:5000",
@@ -75,57 +91,83 @@ Copy
     "logLevel": "debug"
   }
 }
-Execute com proxy:
+```
 
-bash
-Copy
+Para executar com o proxy, utilize o comando:
+
+```bash
 ng serve --proxy-config proxy.conf.json
-Build de Produção
-bash
-Copy
+```
+
+### Build de Produção
+
+Para gerar o build de produção, execute:
+
+```bash
 ng build --configuration production
-Arquivos otimizados serão gerados na pasta dist/
+```
 
-🧪 Testes
-Testes Unitários (Karma)
-bash
-Copy
+Os arquivos otimizados serão gerados na pasta `dist/`.
+
+---
+
+## 🧬 Testes
+
+### Testes Unitários (Karma)
+
+Execute os testes unitários com:
+
+```bash
 ng test
-Relatório interativo no navegador em http://localhost:9876
+```
 
-Testes End-to-End (Protractor)
-bash
-Copy
+Um relatório interativo será aberto no navegador em [http://localhost:9876](http://localhost:9876).
+
+### Testes End-to-End (Protractor)
+
+Para executar os testes end-to-end, use:
+
+```bash
 ng e2e
-Requer servidor em execução (ng serve)
+```
 
-🚨 Troubleshooting
-Problemas Comuns
-Erro de versão do Angular CLI
+> **Nota:** Os testes end-to-end requerem que o servidor esteja em execução (`ng serve`).
 
-Garanta a versão correta:
+---
 
-bash
-Copy
+## 🚨 Troubleshooting
+
+### Problemas Comuns
+
+#### Erro de versão do Angular CLI
+
+Garanta que está utilizando a versão correta:
+
+```bash
 ng version
-Atualize se necessário:
+```
 
-bash
-Copy
+Caso necessário, atualize:
+
+```bash
 npm update -g @angular/cli
-Falha na instalação de pacotes
+```
 
-Limpe cache e reinstale:
+#### Falha na instalação de pacotes
 
-bash
-Copy
+Limpe o cache e reinstale as dependências:
+
+```bash
 npm cache clean --force
 rm -rf node_modules package-lock.json
 npm install
-Erros de CORS
+```
 
-Configure o proxy ou ajuste o CORS no backend:
+#### Erros de CORS
 
-bash
-Copy
+Caso ocorra erro de CORS, configure o proxy ou ajuste as configurações de CORS no backend:
+
+```bash
 ng serve --proxy-config proxy.conf.json
+```
+
