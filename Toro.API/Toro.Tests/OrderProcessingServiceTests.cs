@@ -13,10 +13,12 @@ namespace Toro.Tests
     {
         private Mock<IProductRepository> _mockProductRepository;
         private Mock<IAccountRepository> _mockAccountRepository;
+        private Mock<IOrderRepository> _mockOrderRepository;
         private Mock<IDbContextTransaction> _mockDbContextTransaction;
         private OrderProcessingService _orderProcessingService;
         private readonly int _productId = 1;
         private readonly string _clientId = "1234";
+
 
         [TestInitialize]
         public void Setup()
@@ -24,6 +26,7 @@ namespace Toro.Tests
             _mockProductRepository = new Mock<IProductRepository>();
             _mockAccountRepository = new Mock<IAccountRepository>();
             _mockDbContextTransaction = new Mock<IDbContextTransaction>();
+            _mockOrderRepository = new Mock<IOrderRepository>();
 
             _mockDbContextTransaction.Setup(t => t.CommitAsync(It.IsAny<CancellationToken>())).Returns(Task.CompletedTask);
             _mockDbContextTransaction.Setup(t => t.RollbackAsync(It.IsAny<CancellationToken>())).Returns(Task.CompletedTask);
@@ -33,7 +36,8 @@ namespace Toro.Tests
 
             _orderProcessingService = new OrderProcessingService(
                 _mockProductRepository.Object,
-                _mockAccountRepository.Object);
+                _mockAccountRepository.Object,
+                _mockOrderRepository.Object);
         }
 
         private static Product CreateProduct(decimal unitPrice, int stock)

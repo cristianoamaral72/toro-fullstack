@@ -44,23 +44,53 @@ export class OrderComponent implements OnInit {
   }
 
   purchase(product: any): void {
+    // Depuração para verificar valores
+    debugger;
+  
+    // Obtém a quantidade selecionada para o produto
     const quantity = this.quantities[product.id] || 0;
-    
+  
+    // Valida a compra
     if (!this.validatePurchase(product, quantity)) return;
-
+  
+    // Cria o objeto de requisição para o pedido
     const orderRequest: any = {
-      productId: product.id,
+      productId: product.id, // Corrige o nome do campo
+      clientId: "12454", // Corrige o nome do campo para "clientId"
       quantity: quantity
     };
-
+  
+    // Chama o serviço para criar o pedido
     this.orderService.createOrder(orderRequest).subscribe({
       next: (response: any) => {
+        // Atualiza o saldo e o estoque após a compra
         this.balance -= product.UnitPrice * quantity;
-        product.Stock -= quantity;
+        product.stock -= quantity;
+  
+        // Exibe mensagem de sucesso
         alert('Compra realizada com sucesso!');
       },
-      error: (err) => alert(`Erro na compra: ${err.error?.message || 'Tente novamente'}`)
+      error: (err) => {
+        // Trata erros retornados pela API
+        const errorMessage = this.getErrorMessage(err);
+        alert(`Erro na compra: ${errorMessage}`);
+      }
     });
+  }
+  
+  /**
+   * Obtém a mensagem de erro de forma amigável.
+   * @param err - Erro retornado pela API.
+   * @returns Mensagem de erro amigável.
+   */
+  private getErrorMessage(err: any): string {
+    if (err.error?.errors) {
+      // Concatena todas as mensagens de erro de validação
+      return Object.values(err.error.errors)
+        .flat()
+        .join(', ');
+    }
+    return err.error?.message || 'Ocorreu um erro. Tente novamente.';
   }
 
   private validatePurchase(product: any, quantity: number): boolean {

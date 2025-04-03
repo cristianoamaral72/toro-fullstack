@@ -8,9 +8,9 @@ namespace Toro.Data.Repository;
 
 public class ProductRepository : IProductRepository
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ToroContext _context;
 
-    public ProductRepository(ApplicationDbContext context)
+    public ProductRepository(ToroContext context)
     {
         _context = context;
     }

@@ -7,9 +7,9 @@ namespace Toro.Data.Repository;
 
 public class AccountRepository : IAccountRepository
 {
-    private readonly ApplicationDbContext _context;
+    private readonly ToroContext _context;
 
-    public AccountRepository(ApplicationDbContext context)
+    public AccountRepository(ToroContext context)
     {
         _context = context;
     }
@@ -43,7 +43,7 @@ public class AccountRepository : IAccountRepository
 
     public async Task DeleteAsync(Account account)
     {
-        Account? accountToDelete = await _context.Accounts.FindAsync(account.Id);
+        Account? accountToDelete = await _context.Accounts.FindAsync(account.AccountId);
         _context.Accounts.Remove(accountToDelete);
         await _context.SaveChangesAsync();
     }

@@ -14,12 +14,13 @@ public static class ServiceCollenctionExtensions
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
     {
         // Configuração do DbContext com a connection string definida no appsettings.json.
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<ToroContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped<IOrderProcessingService, OrderProcessingService>();
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
         return services;
     }
 }
