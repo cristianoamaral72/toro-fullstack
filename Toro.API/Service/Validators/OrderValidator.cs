@@ -18,6 +18,7 @@ public class OrderValidator
         if (context.AccountBalance < context.TotalAmount)
             errors.Add("Saldo insuficiente.");
 
+
         bool isValid = errors.Count == 0;
         return new ValidationResult(isValid, errors);
     }
